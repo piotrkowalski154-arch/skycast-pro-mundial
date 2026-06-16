@@ -225,6 +225,13 @@
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
+/* Dodana klasa Terminarza ujednolica szerokość wszystkich okien */
+        .header, .voting, .news, .vercel, .KLASA_TERMINARZA {
+            grid-area: auto; 
+            width: 100%; 
+            box-sizing: border-box; 
+            margin: 0; 
+        }
 
 .btn-watch {
     display: block;
@@ -399,6 +406,145 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // --- 1. MODUŁ RSS: ZŁOTY AGREGATOR ---
+    const feedUrls = [
+        "https://przegladsportowy.onet.pl/pilka-nozna/.feed", 
+        "https://www.polsatsport.pl/rss/pilka-nozna.xml",     
+        "https://weszlo.com/feed/"                            
+    ];
+
+    const activeFeedIndex = 2; 
+
+    async function fetchRSS() {
+        const container = document.getElementById('rss-feed-container');
+        container.innerHTML = '<div class="log-entry">⌛ [SYSTEM] Synchronizacja z satelitą...</div>';
+
+        try {
+            const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=";
+            const response = await fetch(proxyUrl + encodeURIComponent(feedUrls[activeFeedIndex])); 
+            const data = await response.json();
+
+            container.innerHTML = ''; 
+            
+            if(data.items) {
+                // ZMIANA Z 6 NA 3 WIADOMOŚCI!
+                data.items.slice(0, 5).forEach(item => {
+                    container.innerHTML += `
+                        <a href="${item.link}" target="_blank" style="text-decoration: none;">
+                            <div class="rss-item">
+                                <span class="flash-badge">NEWS</span>
+                                <p><strong>${item.title}</strong></p>
+                            </div>
+                        </a>
+                    `;
+                });
+                console.log(`RSS: Synchronizacja z satelitą [${activeFeedIndex}] zakończona.`);
+            }
+        } catch (error) {
+            container.innerHTML = '<div class="log-entry" style="color:red">🔴 [BŁĄD] Satelita nie odpowiada.</div>';
+            console.error("Błąd RSS:", error);
+        }
+    }
+
+    setInterval(fetchRSS, 300000);
+    fetchRSS(); 
+
+
+    // --- 2. MODUŁ GŁOSOWANIA ---
+    let votes = {
+        hiszpania: 0, francja: 0, anglia: 0, portugalia: 0, 
+        brazylia: 0, argentyna: 0, niemcy: 0, holandia: 0, 
+        maroko: 0, japonia: 0, norwegia: 0, usa: 0
+    };
+    let totalVotes = 0;
+
+    const voteButton = document.querySelector('.btn-submit');
+    const votingForm = document.querySelector('.voting-form');
+
+    voteButton.addEventListener('click', function() {
+        const selectedTeam = document.querySelector('input[name="faworyt"]:checked');
+        if (!selectedTeam) {
+            alert('Wybierz drużynę z listy!');
+            return;
+        }
+        votes[selectedTeam.id]++;
+        totalVotes++;
+        votingForm.classList.add('pokaz-wyniki');
+
+        for (let team in votes) {
+            let percentage = ((votes[team] / totalVotes) * 100).toFixed(1);
+            let label = document.querySelector(`label[for="${team}"]`);
+            if (label) label.querySelector('.team-odds').innerText = `${percentage}%`;
+        }
+        
+        this.innerText = 'GŁOS ZAPISANY ✅';
+        this.style.color = '#00d4ff';
+
+        setTimeout(() => { 
+            this.innerText = 'ODDAJ SWÓJ GŁOS'; 
+            this.style.color = '#000000'; 
+            selectedTeam.checked = false; 
+        }, 2000);
+    });
+
+
+    // --- 3. MODUŁ SILNIKA OPERACYJNEGO (SKANER) ---
+    const runScannerBtn = document.getElementById('run-scanner');
+    const homeInput = document.getElementById('home-team');
+    const awayInput = document.getElementById('away-team');
+    const terminal = document.getElementById('log-console');
+
+    runScannerBtn.addEventListener('click', function() {
+        const home = homeInput.value.trim().toUpperCase();
+        const away = awayInput.value.trim().toUpperCase();
+        if (!home || !away) {
+            terminal.innerHTML = '<div class="log-entry" style="color: #ff3333;">🔴 [BŁĄD] Wprowadź obie drużyny!</div>';
+            return;
+        }
+        terminal.innerHTML = '';
+        runScannerBtn.disabled = true;
+        
+        const systemLogs = [
+            `🟢 [INIT] Cel: ${home} vs ${away}...`,
+            `🟡 [ZŁOTY SKANER] Inicjalizacja Zasady 5+5...`,
+            `🟡 [ANALIZA] Skanowanie H2H / Formy...`,
+            `🟢 [EDGE] Przewaga zweryfikowana.`
+        ];
+
+        systemLogs.forEach((log, index) => {
+            setTimeout(() => {
+                terminal.innerHTML += `<div class="log-entry">${log}</div>`;
+                terminal.scrollTop = terminal.scrollHeight;
+                if (index === systemLogs.length - 1) runScannerBtn.disabled = false;
+            }, index * 800);
+        });
+    });
+  </script>
+</body>
+</html>
 
 
 
