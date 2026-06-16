@@ -148,24 +148,29 @@
     /* ========================================= */
     /* RESPONSYWNOŚĆ - WERSJA NA TELEFON         */
     /* ========================================= */
-    @media (max-width: 768px) {
-        .dashboard {
+    .dashboard {
             display: flex;
             flex-direction: column; /* Ustawia okienka jedno pod drugim */
             gap: 20px;
         }
+
         .header, .voting, .news, .vercel {
             grid-area: auto; /* Anuluje siatkę Desktopową */
+            width: 100%; /* Rozciąga kafelki na pełną szerokość ekranu telefonu */
+            box-sizing: border-box; /* Utrzymuje wymiary w ryzach (wliczając paddingi) */
+            margin: 0; /* Zeruje ewentualne marginesy z trybu desktopowego */
         }
+
         .mundial-title {
             font-size: 1.1rem; /* Mniejszy napis tytułowy na telefon */
         }
+
         .header {
+            display: flex; /* Gwarantuje poprawne ułożenie przycisków w kolumnie */
             flex-direction: column; /* Na telefonie napis i przycisk "Na Żywo" będą pod sobą */
             gap: 15px;
             text-align: center;
         }
-    }
     .match-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
