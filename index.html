@@ -22,7 +22,6 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 10px;
-      /* USUNĄŁEM height: 100vh i overflow: hidden, żeby telefon mógł scrollować! */
     }
     
     a { cursor: pointer; text-decoration: none; }
@@ -30,13 +29,12 @@
     .dashboard {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      grid-template-rows: auto 1fr 1fr; /* Zmiana na 'auto' żeby nagłówek się dopasowywał */
+      grid-template-rows: auto 1fr 1fr;
       gap: 15px;
       height: 100%;
     }
 
     .window {
-    /* Ustawiamy białe szkło z przezroczystością Alpha na 0.2 (20%) */
     background: rgba(255, 255, 255, 0.2); 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -44,7 +42,7 @@
     border-radius: 12px;
     padding: 20px;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* Delikatniejszy cień */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
 }
 
     .window:hover {
@@ -61,7 +59,6 @@
       background-position: center;
     }
 
-    /* Paski przewijania (Scrollbary) */
     .voting::-webkit-scrollbar { width: 8px; }
     .voting::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); border-radius: 4px; }
     .voting::-webkit-scrollbar-thumb { background: rgba(0, 255, 204, 0.5); border-radius: 4px; }
@@ -93,7 +90,6 @@
 
     h3 { margin-top: 0; color: #ffcc00; font-size: 1.2rem; margin-bottom: 15px; text-transform: uppercase; }
 
-    /* Moduł Głosowania */
     .voting-form { display: flex; flex-direction: column; gap: 10px; }
     .category-title { color: #00ffcc; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 15px 0 5px 0; border-bottom: 1px dashed rgba(0, 255, 204, 0.3); padding-bottom: 3px; }
     .team-option input[type="radio"] { display: none; }
@@ -107,39 +103,31 @@
     .btn-submit { background-color: #ffcc00; color: #000; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; text-transform: uppercase; transition: 0.3s; }
     .btn-submit:hover { background-color: #e6b800; transform: translateY(-2px); }
 
-    /* ========================================= */
-    /* POPRAWIONY MODUŁ RSS (BEZ DUBLOWANIA!)    */
-    /* ========================================= */
     .rss-item { 
-    /* Jasny błękit przechodzący w słoneczny, jasny żółty */
     background: linear-gradient(135deg, #e0f2fe, #fef08a); 
     margin-bottom: 18px;            
     padding: 22px;                  
     border-radius: 12px;            
-    border-left: 6px solid #eab308;  /* Złota/Żółta ramka */
+    border-left: 6px solid #eab308;  
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Ponieważ tło jest teraz jasne, wymuszamy CIEMNY kolor czcionki! */
 .rss-item p, .rss-item strong {
-    color: #1a1a2e !important; /* Bardzo ciemny granat/czerń */
+    color: #1a1a2e !important; 
 }
 
-/* Reakcja na najechanie (Hover) */
 .rss-item:hover {
-    background: linear-gradient(135deg, #bae6fd, #fde047); /* Nieco mocniejsze kolory przy najechaniu */
+    background: linear-gradient(135deg, #bae6fd, #fde047); 
     transform: translateX(10px);         
-    border-left: 6px solid #1a1a2e;     /* Ciemna ramka dla kontrastu */
+    border-left: 6px solid #1a1a2e;     
     box-shadow: 0 0 20px rgba(250, 204, 21, 0.4); 
 }
 
-    /* Moduł Wideo */
     .video-wrapper { margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0, 212, 255, 0.4); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; }
     .video-wrapper:hover { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); border: 1px solid rgba(0, 212, 255, 0.8); }
     .video-wrapper iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
 
-    /* Moduł Skanera */
     .scanner-inputs { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
     .scanner-inputs input { flex: 1; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); color: #00ffcc; padding: 10px; border-radius: 6px; font-family: 'Courier New', monospace; font-weight: bold; outline: none; transition: 0.3s; }
     .scanner-inputs input:focus { border-color: #00ffcc; box-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
@@ -149,29 +137,26 @@
     .terminal-screen { background: rgba(0, 0, 0, 0.8); border: 1px solid #333; border-radius: 6px; padding: 10px; height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; }
     .log-entry { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #00ffcc; margin-bottom: 8px; background: rgba(0, 0, 0, 0.4); padding: 6px 10px; border-radius: 4px; border-left: 3px solid #00ffcc; }
 
-    /* ========================================= */
-    /* RESPONSYWNOŚĆ - WERSJA NA TELEFON         */
-    /* ========================================= */
     .dashboard {
             display: flex;
-            flex-direction: column; /* Ustawia okienka jedno pod drugim */
+            flex-direction: column; 
             gap: 20px;
         }
 
         .header, .voting, .news, .vercel {
-            grid-area: auto; /* Anuluje siatkę Desktopową */
-            width: 100%; /* Rozciąga kafelki na pełną szerokość ekranu telefonu */
-            box-sizing: border-box; /* Utrzymuje wymiary w ryzach (wliczając paddingi) */
-            margin: 0; /* Zeruje ewentualne marginesy z trybu desktopowego */
+            grid-area: auto; 
+            width: 100%; 
+            box-sizing: border-box; 
+            margin: 0; 
         }
 
         .mundial-title {
-            font-size: 1.1rem; /* Mniejszy napis tytułowy na telefon */
+            font-size: 1.1rem;
         }
 
         .header {
-            display: flex; /* Gwarantuje poprawne ułożenie przycisków w kolumnie */
-            flex-direction: column; /* Na telefonie napis i przycisk "Na Żywo" będą pod sobą */
+            display: flex; 
+            flex-direction: column; 
             gap: 15px;
             text-align: center;
         }
@@ -184,11 +169,11 @@
     margin-top: 15px;
 }
 .match-card img {
-    width: 100%;             /* Dopasowuje zdjęcie do szerokości karty */
-    border-radius: 8px;      /* Zmiękcza rogi zdjęcia */
-    margin-bottom: 15px;     /* Odstęp od tekstu pod zdjęciem */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Delikatna ramka zdjęcia */
-    display: block;          /* Eliminuje dziwne odstępy pod zdjęciem */
+    width: 100%;             
+    border-radius: 8px;      
+    margin-bottom: 15px;     
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    display: block;          
 }
 
 .btn-watch {
@@ -208,19 +193,18 @@
 }
 
 .match-card h4 {
-    color: #ffcc00; /* Złoto Mundialu */
+    color: #ffcc00; 
     font-size: 1.1rem;
-    font-weight: 800; /* POGRUBIONE */
+    font-weight: 800; 
     margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
 
 .match-card p {
-    color: #e0e0e0; /* Jasnoszary dla lepszej czytelności */
+    color: #e0e0e0; 
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
-/* Dodana klasa Terminarza ujednolica szerokość wszystkich okien */
         .header, .voting, .news, .vercel, .KLASA_TERMINARZA {
             grid-area: auto; 
             width: 100%; 
@@ -230,12 +214,12 @@
 
 .btn-watch {
     display: block;
-    background: linear-gradient(90deg, #ffcc00, #d4ac0d); /* Złoty gradient */
+    background: linear-gradient(90deg, #ffcc00, #d4ac0d); 
     color: #000;
     padding: 14px;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 900; /* BOLD */
+    font-weight: 900; 
     font-size: 1rem;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -248,11 +232,10 @@
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
 }
-/* Zmieniamy kolor akapitu na ciemny, żeby był czytelny na jasnym tle */
 .match-card p {
-    color: #333333;       /* To jest bardzo ciemny szary - czytelniejszy niż biały */
-    font-weight: 600;     /* Trochę pogrubiamy, żeby było wyraźniej */
-    margin-bottom: 20px;  /* Zostawiamy odstęp od przycisku */
+    color: #333333;       
+    font-weight: 600;     
+    margin-bottom: 20px;  
 }
 .match-card {
         padding: 20px;
@@ -261,7 +244,7 @@
     }
     .card-title {
         color: #ffcc00;
-        font-size: 1.4rem; /* Zwiększone */
+        font-size: 1.4rem; 
         text-transform: uppercase;
         margin-bottom: 15px;
         border-bottom: 2px solid #ffcc00;
@@ -271,7 +254,7 @@
     .match-list {
         display: flex;
         flex-direction: column;
-        gap: 15px; /* Lekko zwiększone odstępy dla lepszej czytelności */
+        gap: 15px; 
     }
     .match-item {
         display: flex;
@@ -281,7 +264,7 @@
         padding: 12px;
         border-radius: 8px;
         transition: 0.3s;
-        font-size: 1.25rem; /* TWOJE ŻYCZENIE: Zwiększone o ~25% */
+        font-size: 1.25rem; 
     }
     .match-item:hover {
         background: rgba(0, 212, 255, 0.1);
@@ -400,7 +383,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, doc, updateDoc, increment, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, increment, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     // 1. KONFIGURACJA FIREBASE
     const firebaseConfig = {
@@ -468,9 +451,11 @@
         if (!selectedTeam) return alert('Wybierz drużynę!');
 
         try {
-            await updateDoc(doc(db, "glosy", "wyniki"), {
+            // FIX: setDoc z { merge: true } automatycznie stworzy dokument, jeśli nie istnieje
+            await setDoc(doc(db, "glosy", "wyniki"), {
                 [selectedTeam.id]: increment(1)
-            });
+            }, { merge: true });
+            
             voteButton.innerText = 'GŁOS ZAPISANY ✅';
             setTimeout(() => { voteButton.innerText = 'ODDAJ SWÓJ GŁOS'; }, 2000);
         } catch (e) {
@@ -504,4 +489,4 @@
 </script>
  
 </body>
-</html
+</html>
