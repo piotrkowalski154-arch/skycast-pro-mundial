@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SkyCast PRO // Centrum Operacyjne</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a1928">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -203,15 +207,6 @@
     transform: scale(1.05);
 }
 
-
-
-.match-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .match-card h4 {
     color: #ffcc00; /* Złoto Mundialu */
     font-size: 1.1rem;
@@ -352,7 +347,6 @@
         <h3 style="margin-top: 20px; font-size: 1rem; color: #00d4ff;">📺 MATCHDAY HIGHLIGHTS</h3>
        <div class="match-card">
     
-    
 <div class="match-card">
     <img src="https://i.ytimg.com/vi/6Vmw79RfH4g/maxresdefault.jpg" alt="Hiszpania vs RZP">
     <div class="card-content">
@@ -405,28 +399,10 @@
         <span class="match-teams">🇦🇹 Austria <span class="vs">vs</span> 🇯🇴 Jordania</span>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+</div>
+</div>
+</div>
+</div>
 
   <script>
     // --- 1. MODUŁ RSS: ZŁOTY AGREGATOR ---
@@ -473,155 +449,31 @@
     fetchRSS(); 
 
 
-    // --- 2. MODUŁ GŁOSOWANIA ---
-    let votes = {
+    // --- 2. MODUŁ GŁOSOWANIA Z LOCAL STORAGE ---
+    // Pobiera głosy z pamięci lub tworzy nowe od zera
+    let votes = JSON.parse(localStorage.getItem('skycast_votes')) || {
         hiszpania: 0, francja: 0, anglia: 0, portugalia: 0, 
         brazylia: 0, argentyna: 0, niemcy: 0, holandia: 0, 
         maroko: 0, japonia: 0, norwegia: 0, usa: 0
     };
-    let totalVotes = 0;
+    let totalVotes = parseInt(localStorage.getItem('skycast_totalVotes')) || 0;
 
     const voteButton = document.querySelector('.btn-submit');
     const votingForm = document.querySelector('.voting-form');
 
-    voteButton.addEventListener('click', function() {
-        const selectedTeam = document.querySelector('input[name="faworyt"]:checked');
-        if (!selectedTeam) {
-            alert('Wybierz drużynę z listy!');
-            return;
-        }
-        votes[selectedTeam.id]++;
-        totalVotes++;
-        votingForm.classList.add('pokaz-wyniki');
-
-        for (let team in votes) {
-            let percentage = ((votes[team] / totalVotes) * 100).toFixed(1);
-            let label = document.querySelector(`label[for="${team}"]`);
-            if (label) label.querySelector('.team-odds').innerText = `${percentage}%`;
-        }
-        
-        this.innerText = 'GŁOS ZAPISANY ✅';
-        this.style.color = '#00d4ff';
-
-        setTimeout(() => { 
-            this.innerText = 'ODDAJ SWÓJ GŁOS'; 
-            this.style.color = '#000000'; 
-            selectedTeam.checked = false; 
-        }, 2000);
-    });
-
-
-    // --- 3. MODUŁ SILNIKA OPERACYJNEGO (SKANER) ---
-    const runScannerBtn = document.getElementById('run-scanner');
-    const homeInput = document.getElementById('home-team');
-    const awayInput = document.getElementById('away-team');
-    const terminal = document.getElementById('log-console');
-
-    runScannerBtn.addEventListener('click', function() {
-        const home = homeInput.value.trim().toUpperCase();
-        const away = awayInput.value.trim().toUpperCase();
-        if (!home || !away) {
-            terminal.innerHTML = '<div class="log-entry" style="color: #ff3333;">🔴 [BŁĄD] Wprowadź obie drużyny!</div>';
-            return;
-        }
-        terminal.innerHTML = '';
-        runScannerBtn.disabled = true;
-        
-        const systemLogs = [
-            `🟢 [INIT] Cel: ${home} vs ${away}...`,
-            `🟡 [ZŁOTY SKANER] Inicjalizacja Zasady 5+5...`,
-            `🟡 [ANALIZA] Skanowanie H2H / Formy...`,
-            `🟢 [EDGE] Przewaga zweryfikowana.`
-        ];
-
-        systemLogs.forEach((log, index) => {
-            setTimeout(() => {
-                terminal.innerHTML += `<div class="log-entry">${log}</div>`;
-                terminal.scrollTop = terminal.scrollHeight;
-                if (index === systemLogs.length - 1) runScannerBtn.disabled = false;
-            }, index * 800);
-        });
-    });
-  </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script>
-    // --- 1. MODUŁ RSS: ZŁOTY AGREGATOR ---
-    const feedUrls = [
-        "https://przegladsportowy.onet.pl/pilka-nozna/.feed", 
-        "https://www.polsatsport.pl/rss/pilka-nozna.xml",     
-        "https://weszlo.com/feed/"                            
-    ];
-
-    const activeFeedIndex = 2; 
-
-    async function fetchRSS() {
-        const container = document.getElementById('rss-feed-container');
-        container.innerHTML = '<div class="log-entry">⌛ [SYSTEM] Synchronizacja z satelitą...</div>';
-
-        try {
-            const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=";
-            const response = await fetch(proxyUrl + encodeURIComponent(feedUrls[activeFeedIndex])); 
-            const data = await response.json();
-
-            container.innerHTML = ''; 
-            
-            if(data.items) {
-                // ZMIANA Z 6 NA 3 WIADOMOŚCI!
-                data.items.slice(0, 5).forEach(item => {
-                    container.innerHTML += `
-                        <a href="${item.link}" target="_blank" style="text-decoration: none;">
-                            <div class="rss-item">
-                                <span class="flash-badge">NEWS</span>
-                                <p><strong>${item.title}</strong></p>
-                            </div>
-                        </a>
-                    `;
-                });
-                console.log(`RSS: Synchronizacja z satelitą [${activeFeedIndex}] zakończona.`);
+    // Funkcja aktualizująca widok od razu przy wejściu na stronę
+    function updateResultsView() {
+        if(totalVotes > 0) {
+            votingForm.classList.add('pokaz-wyniki');
+            for (let team in votes) {
+                let percentage = ((votes[team] / totalVotes) * 100).toFixed(1);
+                let label = document.querySelector(`label[for="${team}"]`);
+                if (label) label.querySelector('.team-odds').innerText = `${percentage}%`;
             }
-        } catch (error) {
-            container.innerHTML = '<div class="log-entry" style="color:red">🔴 [BŁĄD] Satelita nie odpowiada.</div>';
-            console.error("Błąd RSS:", error);
         }
     }
-
-    setInterval(fetchRSS, 300000);
-    fetchRSS(); 
-
-
-    // --- 2. MODUŁ GŁOSOWANIA ---
-    let votes = {
-        hiszpania: 0, francja: 0, anglia: 0, portugalia: 0, 
-        brazylia: 0, argentyna: 0, niemcy: 0, holandia: 0, 
-        maroko: 0, japonia: 0, norwegia: 0, usa: 0
-    };
-    let totalVotes = 0;
-
-    const voteButton = document.querySelector('.btn-submit');
-    const votingForm = document.querySelector('.voting-form');
+    
+    updateResultsView(); // Odpalenie funkcji na starcie
 
     voteButton.addEventListener('click', function() {
         const selectedTeam = document.querySelector('input[name="faworyt"]:checked');
@@ -629,15 +481,15 @@
             alert('Wybierz drużynę z listy!');
             return;
         }
+        
         votes[selectedTeam.id]++;
         totalVotes++;
-        votingForm.classList.add('pokaz-wyniki');
+        
+        // Zapis do lokalnej pamięci (Lokal Storage)
+        localStorage.setItem('skycast_votes', JSON.stringify(votes));
+        localStorage.setItem('skycast_totalVotes', totalVotes);
 
-        for (let team in votes) {
-            let percentage = ((votes[team] / totalVotes) * 100).toFixed(1);
-            let label = document.querySelector(`label[for="${team}"]`);
-            if (label) label.querySelector('.team-odds').innerText = `${percentage}%`;
-        }
+        updateResultsView();
         
         this.innerText = 'GŁOS ZAPISANY ✅';
         this.style.color = '#00d4ff';
@@ -649,38 +501,41 @@
         }, 2000);
     });
 
-
     // --- 3. MODUŁ SILNIKA OPERACYJNEGO (SKANER) ---
+    // PUSTY / NIEZMIENIONY (według Twojego kodu ten moduł ma logikę, 
+    // ale inputów nie było w samym HTML. Zostawiłem skrypt dokładnie tak jak miałeś!)
     const runScannerBtn = document.getElementById('run-scanner');
     const homeInput = document.getElementById('home-team');
     const awayInput = document.getElementById('away-team');
     const terminal = document.getElementById('log-console');
 
-    runScannerBtn.addEventListener('click', function() {
-        const home = homeInput.value.trim().toUpperCase();
-        const away = awayInput.value.trim().toUpperCase();
-        if (!home || !away) {
-            terminal.innerHTML = '<div class="log-entry" style="color: #ff3333;">🔴 [BŁĄD] Wprowadź obie drużyny!</div>';
-            return;
-        }
-        terminal.innerHTML = '';
-        runScannerBtn.disabled = true;
-        
-        const systemLogs = [
-            `🟢 [INIT] Cel: ${home} vs ${away}...`,
-            `🟡 [ZŁOTY SKANER] Inicjalizacja Zasady 5+5...`,
-            `🟡 [ANALIZA] Skanowanie H2H / Formy...`,
-            `🟢 [EDGE] Przewaga zweryfikowana.`
-        ];
+    if (runScannerBtn) {
+        runScannerBtn.addEventListener('click', function() {
+            const home = homeInput.value.trim().toUpperCase();
+            const away = awayInput.value.trim().toUpperCase();
+            if (!home || !away) {
+                terminal.innerHTML = '<div class="log-entry" style="color: #ff3333;">🔴 [BŁĄD] Wprowadź obie drużyny!</div>';
+                return;
+            }
+            terminal.innerHTML = '';
+            runScannerBtn.disabled = true;
+            
+            const systemLogs = [
+                `🟢 [INIT] Cel: ${home} vs ${away}...`,
+                `🟡 [ZŁOTY SKANER] Inicjalizacja Zasady 5+5...`,
+                `🟡 [ANALIZA] Skanowanie H2H / Formy...`,
+                `🟢 [EDGE] Przewaga zweryfikowana.`
+            ];
 
-        systemLogs.forEach((log, index) => {
-            setTimeout(() => {
-                terminal.innerHTML += `<div class="log-entry">${log}</div>`;
-                terminal.scrollTop = terminal.scrollHeight;
-                if (index === systemLogs.length - 1) runScannerBtn.disabled = false;
-            }, index * 800);
+            systemLogs.forEach((log, index) => {
+                setTimeout(() => {
+                    terminal.innerHTML += `<div class="log-entry">${log}</div>`;
+                    terminal.scrollTop = terminal.scrollHeight;
+                    if (index === systemLogs.length - 1) runScannerBtn.disabled = false;
+                }, index * 800);
+            });
         });
-    });
+    }
   </script>
 </body>
 </html>
