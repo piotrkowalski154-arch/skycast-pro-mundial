@@ -204,65 +204,104 @@
         font-size: 1.1rem;
     }
 
-   /* SYSTEM SKYCAST PRO: NAPRAWA LAYOUTU */
-/* 1. KONTENER RODZIC (Wiersz meczu - musisz mieć taką klasę lub podobną) */
+   /* SYSTEM SKYCAST PRO: ZARYGLOWANY LAYOUT (MUNDIAL 2026) */
+
+/* 1. KONTENER MECZU (Wiersz) */
 .match-row {
     display: flex;
     align-items: center;
     width: 100%;
     overflow: hidden; /* Zabezpieczenie przed wyskakiwaniem */
+    padding: 8px 0;
 }
 
-/* 2. CZAS (Ustawiamy stałą szerokość, żeby nie skakał) */
+/* 2. CZAS */
 .match-time {
     flex-shrink: 0;
-    width: 50px; /* Dopasuj wg uznania */
+    width: 50px; 
     font-weight: bold;
+    font-size: 11px;
+    color: #ffd700; /* Złoty akcent dla czasu */
 }
 
-/* 3. DRUŻYNY (TUTAJ JEST TWOJA ZMIANA) */
+/* 3. DRUŻYNY (PANCERNE ZAWIIANIE/UCIĘCIE) */
 .match-teams {
-    flex-grow: 1;              /* Bierz całą wolną przestrzeń */
-    min-width: 0;              /* FUNDAMENT: Pozwala się ścisnąć, nie pęka */
+    flex-grow: 1;              
+    min-width: 0;              /* KLUCZ: Pozwala się ścisnąć */
     text-align: center;        
-    padding: 0 5px;            
+    padding: 0 8px;            
     font-size: 10px;           
-    white-space: nowrap;       /* Zmieniamy z powrotem na nowrap, ale z... */
-    overflow: hidden;          /* ...ukrywaniem overflow... */
-    text-overflow: ellipsis;   /* ...i kropkami, żeby tekst nie 'uciekał' */
+    white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;   /* Kropki zamiast rozwalania layoutu */
 }
 
-/* 4. PRZYCISK (Najważniejsze: flex-shrink 0, żeby się nie ściskał) */
+/* 4. PRZYCISK LIVE */
 .live-btn {
-    flex-shrink: 0;            /* "Nie daj się ścisnąć za nic w świecie" */
-    margin-left: auto;         /* Opcjonalnie: dociska do prawej */
+    flex-shrink: 0;            /* "Nie daj się ścisnąć" */
+    margin-left: auto;         
+    font-size: 10px;
 }
-    /* Przegródka 3: PRZYCISK STATYSTYK */
-    .match-stats-btn {
-        color: #00d2ff;               
-        font-size: 13px;
-        font-weight: bold;
-        white-space: nowrap;          /* Zabezpieczenie przed łamaniem tekstu! */
-        background-color: rgba(0, 210, 255, 0.1); 
-        padding: 6px 12px;
-        border-radius: 20px;          
-        border: 1px solid #00d2ff;    
-        transition: 0.3s;
-    }
-    
-    .match-item:hover .match-stats-btn {
-        background-color: #00d2ff;
-        color: #000;
-    }
 
-    /* Inne przyciski w kartach */
-    .btn-refresh { margin-top: 15px; width: 100%; padding: 10px; background: #00d4ff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-    .btn-refresh:hover { background: #fff; }
+/* 5. PRZYCISK STATYSTYK */
+.match-stats-btn {
+    color: #00d2ff;                
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;          
+    background-color: rgba(0, 210, 255, 0.1); 
+    padding: 4px 8px;
+    border-radius: 15px;          
+    border: 1px solid #00d2ff;    
+    transition: 0.3s;
+    cursor: pointer;
+}
 
-    .btn-watch { display: block; background: linear-gradient(90deg, #ffcc00, #d4ac0d); color: #000; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 1rem; text-transform: uppercase; text-align: center; transition: all 0.3s ease; border: none; cursor: pointer; margin-top: 10px; }
-    .btn-watch:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
+.match-item:hover .match-stats-btn {
+    background-color: #00d2ff;
+    color: #000;
+}
 
-    .match-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; }
+/* 6. BUTTONY AKCJI */
+.btn-refresh { 
+    margin-top: 15px; 
+    width: 100%; 
+    padding: 10px; 
+    background: #00d4ff; 
+    border: none; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+.btn-refresh:hover { background: #fff; }
+
+.btn-watch { 
+    display: block; 
+    background: linear-gradient(90deg, #ffcc00, #d4ac0d); 
+    color: #000; 
+    padding: 14px; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    font-weight: 900; 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+    text-align: center; 
+    transition: all 0.3s ease; 
+    border: none; 
+    cursor: pointer; 
+    margin-top: 10px; 
+}
+.btn-watch:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
+
+/* 7. KARTA GRAFICZNA */
+.match-card img { 
+    width: 100%; 
+    border-radius: 8px; 
+    margin-bottom: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    display: block; 
+}
 </style>
 </head>
 
