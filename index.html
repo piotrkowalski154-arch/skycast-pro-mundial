@@ -225,16 +225,15 @@
     color: #ffd700; /* Złoty akcent dla czasu */
 }
 
-/* 3. DRUŻYNY (PANCERNE ZAWIIANIE/UCIĘCIE) */
 .match-teams {
     flex-grow: 1;              
-    min-width: 0;              /* KLUCZ: Pozwala się ścisnąć */
+    min-width: 0;              
     text-align: center;        
-    padding: 05px;            
-    font-size: 05px;           
+    padding: 0 5px;            /* Poprawny zapis: 0 góra/dół, 5px lewo/prawo */
+    font-size: 11px;           /* Zmienione z 05px na 11px – teraz będzie czytelne! */
     white-space: nowrap;       
     overflow: hidden;          
-    text-overflow: ellipsis;   /* Kropki zamiast rozwalania layoutu */
+    text-overflow: ellipsis;   
 }
 
 /* 4. PRZYCISK LIVE */
