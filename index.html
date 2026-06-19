@@ -206,41 +206,41 @@
 
    /* SYSTEM SKYCAST PRO: ZARYGLOWANY LAYOUT (MUNDIAL 2026) */
 
-/* 1. KONTENER MECZU (Wiersz) */
+/* NAPRAWA: SZTYWNY PODZIAŁ WIERZA */
+
 .match-row {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Rozpycha elementy do krawędzi */
     width: 100%;
-    overflow: hidden; /* Zabezpieczenie przed wyskakiwaniem */
-    padding: 8px 0;
-    gap: 10px
+    overflow: hidden; /* Zabetonowanie: nic nie może wystawać */
+    gap: 5px; /* Delikatny oddech między czasem, drużyną a przyciskiem */
 }
 
-/* 2. CZAS */
+/* Czas ma być sztywny */
 .match-time {
-    flex-shrink: 0;
-    width: 50px; 
+    flex: 0 0 45px; /* Nie rośnie, nie kurczy się, ma dokładnie 45px */
     font-weight: bold;
-    font-size: 11px;
-    color: #ffd700; /* Złoty akcent dla czasu */
+    text-align: left;
 }
 
+/* Drużyny biorą to co zostanie */
 .match-teams {
-    flex-grow: 4;              /* Zwiększyłem z 1 na 2 – teraz drużyny mają większy priorytet niż przycisk */
-    min-width: 0;              
-    text-align: center;        
-    padding: 0 2px;            /* Mniejszy padding, żeby tekst miał więcej miejsca */
+    flex: 1;              /* Bierz całą wolną przestrzeń */
+    min-width: 0;         /* KLUCZ: Pozwala się ścisnąć */
+    text-align: center;   
     font-size: 10px;           
-    white-space: normal;       /* ZMIANA: Zamiast 'nowrap', pozwalamy tekstowi 'wejść' na drugą linię, jeśli trzeba */
-    overflow: visible;         /* ZMIANA: Zamiast 'hidden', pokazujemy cały tekst */
+    white-space: nowrap;  /* Wracamy do nowrap, bo musimy trzymać linię */
+    overflow: hidden;     /* Jeśli za długie -> ucinamy, inaczej rozwali layout */
+    text-overflow: ellipsis; /* ...i dajemy kropki */
 }
 
-/* 4. PRZYCISK LIVE */
+/* Przycisk ma być "sztywny" i na końcu */
 .live-btn {
-    flex-shrink: 0;            
-    padding: 2px 4px;          /* ZMNIEJSZAMY: Mniej miejsca w środku przycisku */
-    font-size: 10px;            /* Minimalnie mniejszy font na przycisku, żeby zyskać przestrzeń */
-    margin-left: auto;
+    flex: 0 0 auto;       /* Nie rośnie, nie kurczy się, dopasowuje się do zawartości */
+    padding: 2px 5px;          
+    font-size: 9px;            
+    white-space: nowrap;  /* Żeby tekst przycisku nie złamał się w połowie */
 }
 
 /* 5. PRZYCISK STATYSTYK */
