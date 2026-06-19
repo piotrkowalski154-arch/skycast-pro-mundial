@@ -226,21 +226,21 @@
 }
 
 .match-teams {
-    flex-grow: 1;              
+    flex-grow: 2;              /* Zwiększyłem z 1 na 2 – teraz drużyny mają większy priorytet niż przycisk */
     min-width: 0;              
     text-align: center;        
-    padding: 0 5px;            /* Poprawny zapis: 0 góra/dół, 5px lewo/prawo */
-    font-size: 11px;           /* Zmienione z 05px na 11px – teraz będzie czytelne! */
-    white-space: nowrap;       
-    overflow: hidden;          
-    text-overflow: ellipsis;   
+    padding: 0 2px;            /* Mniejszy padding, żeby tekst miał więcej miejsca */
+    font-size: 10px;           
+    white-space: normal;       /* ZMIANA: Zamiast 'nowrap', pozwalamy tekstowi 'wejść' na drugą linię, jeśli trzeba */
+    overflow: visible;         /* ZMIANA: Zamiast 'hidden', pokazujemy cały tekst */
 }
 
 /* 4. PRZYCISK LIVE */
 .live-btn {
-    flex-shrink: 0;            /* "Nie daj się ścisnąć" */
-    margin-left: auto;         
-    font-size: 10px;
+    flex-shrink: 0;            
+    padding: 2px 4px;          /* ZMNIEJSZAMY: Mniej miejsca w środku przycisku */
+    font-size: 9px;            /* Minimalnie mniejszy font na przycisku, żeby zyskać przestrzeń */
+    margin-left: auto;
 }
 
 /* 5. PRZYCISK STATYSTYK */
