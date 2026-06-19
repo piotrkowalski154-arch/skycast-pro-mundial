@@ -205,18 +205,38 @@
     }
 
    /* SYSTEM SKYCAST PRO: NAPRAWA LAYOUTU */
+/* 1. KONTENER RODZIC (Wiersz meczu - musisz mieć taką klasę lub podobną) */
+.match-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden; /* Zabezpieczenie przed wyskakiwaniem */
+}
+
+/* 2. CZAS (Ustawiamy stałą szerokość, żeby nie skakał) */
+.match-time {
+    flex-shrink: 0;
+    width: 50px; /* Dopasuj wg uznania */
+    font-weight: bold;
+}
+
+/* 3. DRUŻYNY (TUTAJ JEST TWOJA ZMIANA) */
 .match-teams {
-    flex-grow: 1;              /* Rozciąganie */
-    flex-shrink: 1;            /* Kurczenie, gdy brak miejsca */
-    min-width: 0;              /* FUNDAMENT: Zapobiega rozpychaniu */
+    flex-grow: 1;              /* Bierz całą wolną przestrzeń */
+    min-width: 0;              /* FUNDAMENT: Pozwala się ścisnąć, nie pęka */
     text-align: center;        
     padding: 0 5px;            
     font-size: 10px;           
-    white-space: normal;       /* Zawijanie tekstu zamiast ucieczki */
-    overflow: hidden;          /* Ukrywa ewentualne wystawanie */
-    text-overflow: ellipsis;   /* Kropki, gdyby tekst był za długi */
+    white-space: nowrap;       /* Zmieniamy z powrotem na nowrap, ale z... */
+    overflow: hidden;          /* ...ukrywaniem overflow... */
+    text-overflow: ellipsis;   /* ...i kropkami, żeby tekst nie 'uciekał' */
 }
 
+/* 4. PRZYCISK (Najważniejsze: flex-shrink 0, żeby się nie ściskał) */
+.live-btn {
+    flex-shrink: 0;            /* "Nie daj się ścisnąć za nic w świecie" */
+    margin-left: auto;         /* Opcjonalnie: dociska do prawej */
+}
     /* Przegródka 3: PRZYCISK STATYSTYK */
     .match-stats-btn {
         color: #00d2ff;               
