@@ -205,13 +205,17 @@
     }
 
     /* Przegródka 2: DRUŻYNY */
-    .match-teams {
-        flex-grow: 1;                 
-        text-align: center;           
-        padding: 0 10px;              
-        font-size: 10px;
-        white-space: nowrap;
-    }
+   .match-teams {
+    flex-grow: 1;              /* Pozwala rosnąć, jeśli jest miejsce */
+    flex-shrink: 1;            /* Pozwala się kurczyć, gdy brakuje miejsca */
+    min-width: 0;              /* KLUCZOWE: Zapobiega rozpychaniu kontenera przez tekst */
+    text-align: center;        
+    padding: 0 5px;            /* Lekko zmniejszyłem padding dla oszczędności miejsca */
+    font-size: 10px;           
+    white-space: normal;       /* Pozwalamy na zawijanie tekstu */
+    overflow: hidden;          /* Ukrywamy to, co wyjdzie poza ramkę */
+    text-overflow: ellipsis;   /* Opcjonalnie: jeśli chcesz, dodaj kropki zamiast łamania */
+}
 
     /* Przegródka 3: PRZYCISK STATYSTYK */
     .match-stats-btn {
