@@ -185,12 +185,27 @@
     gap: 10px; /* Spacja między elementami */
 }
 
-    .match-item:hover {
-        background-color: #34495e;    
-        transform: scale(1.02);       
-        box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-    }
+  .match-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    width: 100%;
+    
+    /* ZABETONOWANIE RAMKI */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 0.2 to widoczność (20%) */
+    border-radius: 12px;                       /* Zaokrąglenie rogów */
+    background: rgba(255, 255, 255, 0.05);     /* Delikatne tło, żeby ramka odcinała się od reszty */
+    
+    transition: all 0.3s ease;                 /* Płynne przejście przy hoverze */
+}
 
+/* Efekt najechania - podbijamy widoczność ramki */
+.match-item:hover {
+    border: 1px solid rgba(0, 210, 255, 0.6);  /* Ramka robi się wyraźniejsza po najechaniu */
+    background: rgba(255, 255, 255, 0.1);      /* Delikatnie jaśniejsze tło */
+}
     /* Przegródka 1: CZAS */
     .match-time {
         font-weight: bold;
@@ -214,7 +229,7 @@
     flex: 1 1 60%; /* Drużyny zajmują 60% szerokości, ale mogą się skurczyć */
     min-width: 150px; /* Minimalna szerokość, żeby nazwa nie była za mała */
     text-align: center;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
 }
 
