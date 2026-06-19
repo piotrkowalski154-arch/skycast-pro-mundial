@@ -177,17 +177,13 @@
     }
 
     /* NOWY FLEXBOX DLA POJEDYNCZEGO MECZU */
-    .match-item {
-        display: flex;
-        justify-content: space-between; 
-        align-items: center;          
-        background-color: #2a3b4c;    
-        padding: 12px 15px;           
-        border-radius: 8px;           
-        text-decoration: none;        
-        color: white;                 
-        transition: 0.3s ease;
-    }
+   .match-item {
+    display: flex;
+    flex-wrap: wrap; /* TO JEST KLUCZ: Pozwala elementom przeskakiwać do nowej linii */
+    align-items: center;
+    padding: 10px;
+    gap: 10px; /* Spacja między elementami */
+}
 
     .match-item:hover {
         background-color: #34495e;    
@@ -215,22 +211,15 @@
 }
 
 .match-teams {
-    flex: 2;              /* Dajemy drużynom 2x więcej "siły przebicia" */
-    min-width: 0;         /* Bardzo ważne: pozwala na ściskanie */
+    flex: 1 1 60%; /* Drużyny zajmują 60% szerokości, ale mogą się skurczyć */
+    min-width: 150px; /* Minimalna szerokość, żeby nazwa nie była za mała */
     text-align: center;
-    font-size: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 11px;
 }
 
 .live-btn {
-    flex: 0 1 auto;       /* Zmiana: Pozwalamy przyciskowi być elastycznym (shrink: 1) */
-    padding: 2px 6px;     /* Bardziej smukły przycisk */
-    font-size: 9px;       /* Nieznacznie mniejszy font, żeby nazwa drużyny wygrała */
-    white-space: nowrap;
+    flex: 1 1 30%; /* Jeśli nie ma miejsca w linii, przeskoczy do nowej */
     text-align: center;
-    min-width: 40px;      /* Ustawiamy minimalną szerokość, żeby nie był "niewidzialny" */
 }
 
 
