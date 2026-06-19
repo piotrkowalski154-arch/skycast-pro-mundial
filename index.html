@@ -164,7 +164,7 @@
     letter-spacing: 1px;
 
     /* EFEKT 3% PRZYBLIŻENIA DO EKRANU (Głębia 3D + Skalowanie) */
-    transform: scale(1.03); /* Fizycznie powiększa kartę dokładnie o 3% i przybliża do oka */
+    transform: scale(1.05); /* Fizycznie powiększa kartę dokładnie o 3% i przybliża do oka */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 212, 255, 0.15); 
     /* Potężny, ciemny cień na dole + delikatna błękitna poświata z tyłu dają efekt, że karta "lewituje" nad ekranem */
 }
@@ -190,23 +190,26 @@
     flex-wrap: wrap; /* TO JEST KLUCZ: Pozwala elementom przeskakiwać do nowej linii */
     align-items: center;
     padding: 10px;
-    gap: 10px; /* Spacja między elementami */
+    gap: 10px; 
+    background-color:#121824
 }
 
   .match-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    /* Trzymamy Twój ulubiony pionowy układ */
     align-items: center;
     gap: 10px;
     padding: 15px;
     width: 100%;
     
-    /* ZABETONOWANIE RAMKI */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* 0.2 to widoczność (20%) */
-    border-radius: 12px;                       /* Zaokrąglenie rogów */
-    background: rgba(255, 255, 255, 0.05);     /* Delikatne tło, żeby ramka odcinała się od reszty */
+    /* FIX TŁA: Twój solidny ciemny grafit (fiolet nie ma prawa przebić) */
+    background: #121824; 
     
-    transition: all 0.3s ease;                 /* Płynne przejście przy hoverze */
+    /* TWOJA RAMKA ALFA */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 12px; 
+    
+    transition: all 0.3s ease; 
 }
 
 /* Efekt najechania - podbijamy widoczność ramki */
@@ -239,6 +242,8 @@
     text-align: center;
     font-size: 17px;
     font-weight: bold;
+  color: #ffffff;       /* Kolor samych liter (tutaj: czysta biel) */
+    background: #0d1424;
 }
 
 .live-btn {
