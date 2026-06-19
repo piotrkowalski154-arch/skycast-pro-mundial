@@ -150,16 +150,24 @@
     /* =========================================
        5. TERMINARZ I SZAFECZKI MECZOWE (NASZA NOWA BAZA)
        ========================================= */
-    .match-card {
-        padding: 20px;
-        background: rgba(10, 25, 45, 0.85);
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 12px;
-        margin-top: 15px;
-        font-size: 20px; /* Zmniejsz rozmiar nagłówka, żeby zyskał elegancję na mobile */
+   .match-card {
+    padding: 20px;
+    
+    /* MODYFIKACJA TŁA: Czysty, głęboki grafitowo-granatowy (Zero przezroczystości = fiolet znika) */
+    background: #0d1424; 
+    
+    /* RAMKA: Podbita do 0.5, żeby błękit SkyCast był bardziej drapieżny i wyrazisty */
+    border: 1px solid rgba(0, 212, 255, 0.5); 
+    border-radius: 12px;
+    margin-top: 15px;
+    font-size: 20px; 
     letter-spacing: 1px;
-    }
 
+    /* EFEKT 3% PRZYBLIŻENIA DO EKRANU (Głębia 3D + Skalowanie) */
+    transform: scale(1.03); /* Fizycznie powiększa kartę dokładnie o 3% i przybliża do oka */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 212, 255, 0.15); 
+    /* Potężny, ciemny cień na dole + delikatna błękitna poświata z tyłu dają efekt, że karta "lewituje" nad ekranem */
+}
     .card-title {
         color: #ffcc00;
         font-size: 1.4rem; 
