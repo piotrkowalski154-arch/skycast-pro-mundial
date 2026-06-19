@@ -204,44 +204,35 @@
         font-size: 1.1rem;
     }
 
-   /* SYSTEM SKYCAST PRO: ZARYGLOWANY LAYOUT (MUNDIAL 2026) */
-
-/* NAPRAWA: SZTYWNY PODZIAŁ WIERZA */
+   /* NAPRAWA: ZMUSZENIE PRZYCISKU DO USTĄPIENIA MIEJSCA */
 
 .match-row {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Rozpycha elementy do krawędzi */
     width: 100%;
-    overflow: hidden; /* Zabetonowanie: nic nie może wystawać */
-    gap: 5px; /* Delikatny oddech między czasem, drużyną a przyciskiem */
+    gap: 4px; /* Zmniejszyłem gap, żeby odzyskać 6px miejsca dla drużyn */
+    overflow: hidden;
 }
 
-/* Czas ma być sztywny */
-.match-time {
-    flex: 0 0 45px; /* Nie rośnie, nie kurczy się, ma dokładnie 45px */
-    font-weight: bold;
-    text-align: left;
-}
-
-/* Drużyny biorą to co zostanie */
 .match-teams {
-    flex: 1;              /* Bierz całą wolną przestrzeń */
-    min-width: 0;         /* KLUCZ: Pozwala się ścisnąć */
-    text-align: center;   
-    font-size: 10px;           
-    white-space: nowrap;  /* Wracamy do nowrap, bo musimy trzymać linię */
-    overflow: hidden;     /* Jeśli za długie -> ucinamy, inaczej rozwali layout */
-    text-overflow: ellipsis; /* ...i dajemy kropki */
+    flex: 2;              /* Dajemy drużynom 2x więcej "siły przebicia" */
+    min-width: 0;         /* Bardzo ważne: pozwala na ściskanie */
+    text-align: center;
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Przycisk ma być "sztywny" i na końcu */
 .live-btn {
-    flex: 0 0 auto;       /* Nie rośnie, nie kurczy się, dopasowuje się do zawartości */
-    padding: 2px 5px;          
-    font-size: 9px;            
-    white-space: nowrap;  /* Żeby tekst przycisku nie złamał się w połowie */
+    flex: 0 1 auto;       /* Zmiana: Pozwalamy przyciskowi być elastycznym (shrink: 1) */
+    padding: 2px 6px;     /* Bardziej smukły przycisk */
+    font-size: 9px;       /* Nieznacznie mniejszy font, żeby nazwa drużyny wygrała */
+    white-space: nowrap;
+    text-align: center;
+    min-width: 40px;      /* Ustawiamy minimalną szerokość, żeby nie był "niewidzialny" */
 }
+
 
 /* 5. PRZYCISK STATYSTYK */
 .match-stats-btn {
