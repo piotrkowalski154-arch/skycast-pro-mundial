@@ -47,7 +47,7 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 12px;
-      padding: 20px;
+      padding: 15px; /* Skalibrowane z 20px, żeby zyskać przestrzeń na mobile */
       transition: all 0.3s ease;
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
     }
@@ -151,38 +151,38 @@
        5. TERMINARZ I SZAFECZKI MECZOWE (NASZA NOWA BAZA)
        ========================================= */
     .match-card {
-        padding: 20px;
+        padding: 15px; /* Skalibrowane z 20px pod mobile */
         background: rgba(10, 25, 45, 0.85);
         border: 1px solid rgba(0, 212, 255, 0.3);
         border-radius: 12px;
         margin-top: 15px;
-        font-size: 20px; /* Zmniejsz rozmiar nagłówka, żeby zyskał elegancję na mobile */
-    letter-spacing: 1px;
+        letter-spacing: 0.5px;
     }
 
     .card-title {
         color: #ffcc00;
-        font-size: 1.4rem; 
+        font-size: 1.15rem; /* Delikatnie zmniejszone, żeby na mobile nagłówek nie ryczał i leżał idealnie */
         text-transform: uppercase;
         margin-bottom: 15px;
         border-bottom: 2px solid #ffcc00;
         padding-bottom: 5px;
         text-align: center;
+        font-weight: bold;
     }
     
     .match-list {
         display: flex;
         flex-direction: column;
-        gap: 15px; 
+        gap: 12px; 
     }
 
-    /* NOWY FLEXBOX DLA POJEDYNCZEGO MECZU */
+    /* KONTROLER WIERSZA MECZOWEGO */
     .match-item {
         display: flex;
         justify-content: space-between; 
         align-items: center;          
         background-color: #2a3b4c;    
-        padding: 12px 15px;           
+        padding: 10px 8px; /* Zmniejszone poduszki boczne z 15px, zyskujemy masę miejsca w poziomie! */
         border-radius: 8px;           
         text-decoration: none;        
         color: white;                 
@@ -191,36 +191,36 @@
 
     .match-item:hover {
         background-color: #34495e;    
-        transform: scale(1.02);       
+        transform: scale(1.01);       
         box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
     }
 
     /* Przegródka 1: CZAS */
     .match-time {
         font-weight: bold;
-        color: #ffcc00;               
-        min-width: 50px;
+        color: #ffcc00;                
+        min-width: 42px; /* Skalibrowane z 50px pod wąskie ekrany */
         font-family: monospace;
-        font-size: 1.1rem;
+        font-size: 0.95rem; /* Zmniejszone z 1.1rem */
     }
 
     /* Przegródka 2: DRUŻYNY */
     .match-teams {
         flex-grow: 1;                 
         text-align: center;           
-        padding: 0 10px;              
-        font-size: 14px;
+        padding: 0 6px; /* Zwężony padding wewnętrzny */
+        font-size: 12px; /* Zredukowane z 14px – kluczowe dla braku ucinania nazw państw na telefonie */
         white-space: nowrap;
     }
 
-    /* Przegródka 3: PRZYCISK STATYSTYK */
+    /* Przegródka 3: PRZYCISK STATYSTYK / LIVE */
     .match-stats-btn {
-        color: #00d2ff;               
-        font-size: 13px;
+        color: #00d2ff;                
+        font-size: 11px; /* Obniżone z 13px, żeby cały przycisk schował się w ekranie */
         font-weight: bold;
-        white-space: nowrap;          /* Zabezpieczenie przed łamaniem tekstu! */
+        white-space: nowrap;          
         background-color: rgba(0, 210, 255, 0.1); 
-        padding: 6px 12px;
+        padding: 4px 8px; /* Odchudzone poduszki wewnętrzne – koniec z ucinaniem napisu LIVE! */
         border-radius: 20px;          
         border: 1px solid #00d2ff;    
         transition: 0.3s;
@@ -240,6 +240,7 @@
 
     .match-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; }
 </style>
+
 </head>
 
 <body>
